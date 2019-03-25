@@ -3,6 +3,8 @@ package com.yangxiaoge.controller;
 import com.yangxiaoge.domain.Girl;
 import com.yangxiaoge.repository.GirlRepository;
 import com.yangxiaoge.service.GirlService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,8 @@ import java.util.List;
  */
 @RestController
 public class GirlController {
+    private final static Logger logger = LoggerFactory.getLogger(GirlController.class);
+
     @Autowired
     private GirlRepository girlRepository;
 
@@ -39,8 +43,8 @@ public class GirlController {
      */
     @PostMapping(value = "/girls")
     public Girl girlAdd(@Valid Girl girl, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+        if (bindingResult.hasErrors()) {
+            logger.error(bindingResult.getFieldError().getDefaultMessage());
             return null;
         }
 
