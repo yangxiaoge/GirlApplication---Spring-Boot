@@ -1,8 +1,10 @@
 package com.yangxiaoge.controller;
 
 import com.yangxiaoge.domain.Girl;
+import com.yangxiaoge.domain.Result;
 import com.yangxiaoge.repository.GirlRepository;
 import com.yangxiaoge.service.GirlService;
+import com.yangxiaoge.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,16 +44,15 @@ public class GirlController {
      * @return
      */
     @PostMapping(value = "/girls")
-    public Girl girlAdd(@Valid Girl girl, BindingResult bindingResult) {
+    public Result<Girl> girlAdd(@Valid Girl girl, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            logger.error(bindingResult.getFieldError().getDefaultMessage());
-            return null;
+            return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
         }
 
         girl.setCupSize(girl.getCupSize());
         girl.setAge(girl.getAge());
 
-        return girlRepository.save(girl);
+        return ResultUtil.success(girlRepository.save(girl));
     }
 
     /**
@@ -109,5 +110,10 @@ public class GirlController {
     @PostMapping(value = "/girls/two")
     public void girlTwo() {
         girlService.insertTwo();
+    }
+
+    @GetMapping(value = "/girls/getAge/{id}")
+    public void getAge(@PathVariable(value = "id") Integer id) throws Exception {
+        girlService.getAge(id);
     }
 }
