@@ -1,6 +1,7 @@
 package com.yangxiaoge.service;
 
 import com.yangxiaoge.domain.Girl;
+import com.yangxiaoge.enums.ResultEnum;
 import com.yangxiaoge.exception.GirlException;
 import com.yangxiaoge.repository.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,9 @@ public class GirlService {
         Girl girl = girlRepository.findOne(id);
         Integer age = girl.getAge();
         if (age < 10) {
-            throw new GirlException(100,"你还在上小学吧");
+            throw new GirlException(ResultEnum.PRIMARY_SCHOOL);
         } else if (age > 10 && age < 16) {
-            throw new GirlException(101,"你还在上初中吧");
+            throw new GirlException(ResultEnum.MIDDLE_SCHOOL);
         }
     }
 }

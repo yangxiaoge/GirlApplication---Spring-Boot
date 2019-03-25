@@ -1,6 +1,7 @@
 package com.yangxiaoge.handle;
 
 import com.yangxiaoge.domain.Result;
+import com.yangxiaoge.enums.ResultEnum;
 import com.yangxiaoge.exception.GirlException;
 import com.yangxiaoge.utils.ResultUtil;
 import org.slf4j.Logger;

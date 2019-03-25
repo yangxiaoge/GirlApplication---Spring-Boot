@@ -1,5 +1,7 @@
 package com.yangxiaoge.exception;
 
+import com.yangxiaoge.enums.ResultEnum;
+
 /**
  * Created by yangxiaoge
  * 2019/3/25 20:09
@@ -8,9 +10,9 @@ package com.yangxiaoge.exception;
 public class GirlException extends RuntimeException { //spring 框架只能捕获运行时异常
     private Integer code;
 
-    public GirlException(Integer code, String msg) {
-        super(msg);
-        this.code = code;
+    public GirlException(ResultEnum resultEnum) {
+        super(resultEnum.getMsg());
+        this.code = resultEnum.getCode();
     }
 
     public Integer getCode() {

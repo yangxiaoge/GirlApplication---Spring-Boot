@@ -1,6 +1,7 @@
 package com.yangxiaoge.utils;
 
 import com.yangxiaoge.domain.Result;
+import com.yangxiaoge.enums.ResultEnum;
 
 /**
  * Created by yangxiaoge
