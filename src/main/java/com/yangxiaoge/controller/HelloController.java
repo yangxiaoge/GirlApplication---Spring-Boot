@@ -1,5 +1,6 @@
-package com.yangxiaoge;
+package com.yangxiaoge.controller;
 
+import com.yangxiaoge.properties.GirlProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

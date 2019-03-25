@@ -1,4 +1,4 @@
-package com.yangxiaoge;
+package com.yangxiaoge.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,5 +1,8 @@
-package com.yangxiaoge;
+package com.yangxiaoge.controller;
 
+import com.yangxiaoge.domain.Girl;
+import com.yangxiaoge.repository.GirlRepository;
+import com.yangxiaoge.service.GirlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

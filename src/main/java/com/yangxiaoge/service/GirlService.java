@@ -1,5 +1,7 @@
-package com.yangxiaoge;
+package com.yangxiaoge.service;
 
+import com.yangxiaoge.domain.Girl;
+import com.yangxiaoge.repository.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
