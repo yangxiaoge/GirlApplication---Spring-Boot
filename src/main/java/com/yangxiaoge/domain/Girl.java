@@ -3,6 +3,7 @@ package com.yangxiaoge.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 
 /**
  * Created by yangxiaoge
@@ -14,6 +15,7 @@ public class Girl {
     @GeneratedValue
     private Integer id;
     private String cupSize;
+    @Min(value = 18,message = "少女不宜！")
     private Integer age;
 
     public Girl() {
