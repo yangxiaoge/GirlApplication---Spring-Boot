@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by yangxiaoge
@@ -34,8 +35,8 @@ public class GirlController {
      * @return
      */
     @GetMapping(value = "/girls")
-    public List<Girl> girlList() {
-        return girlRepository.findAll();
+    public Result<List<Girl>> girlList() {
+        return ResultUtil.success(girlRepository.findAll());
     }
 
     /**
@@ -62,8 +63,9 @@ public class GirlController {
      * @return
      */
     @GetMapping(value = "/girls/{id}")
-    public Girl findGirl(@PathVariable(value = "id") Integer id) {
-        return girlRepository.findOne(id);
+    public Result<Girl> findGirl(@PathVariable(value = "id") Integer id) {
+//        return girlRepository.findOne(id);
+        return ResultUtil.success(girlRepository.findById(id).orElse(null));
     }
 
     /**
@@ -73,8 +75,8 @@ public class GirlController {
      * @return
      */
     @GetMapping(value = "/girls/age/{age}")
-    public List<Girl> girlListByAge(@PathVariable("age") Integer age) {
-        return girlRepository.findByAge(age);
+    public Result<List<Girl>> girlListByAge(@PathVariable("age") Integer age) {
+        return ResultUtil.success(girlRepository.findByAge(age));
     }
 
     /**
@@ -83,18 +85,25 @@ public class GirlController {
      * @param id
      * @param cupSize
      * @param age
+     * @param money
      * @return
      */
     @PutMapping(value = "/girls/{id}")
-    public Girl updateGirl(@PathVariable(value = "id") Integer id,
-                           @RequestParam("cupSize") String cupSize,
-                           @RequestParam("age") Integer age) {
-        Girl girl = new Girl();
-        girl.setId(id);
-        girl.setCupSize(cupSize);
-        girl.setAge(age);
+    public Result<Girl> updateGirl(@PathVariable(value = "id") Integer id,
+                                   @RequestParam("cupSize") String cupSize,
+                                   @RequestParam("age") Integer age,
+                                   @RequestParam("money") Double money) {
+        Optional<Girl> optional = girlRepository.findById(id);
+        if (optional.isPresent()) {
+            Girl girl = optional.get();
+            girl.setId(id);
+            girl.setCupSize(cupSize);
+            girl.setAge(age);
+            girl.setMoney(money);
+            return ResultUtil.success(girlRepository.save(girl));
+        }
 
-        return girlRepository.save(girl);
+        return ResultUtil.error(1,"妹子不存在");
     }
 
     /**
@@ -104,7 +113,7 @@ public class GirlController {
      */
     @DeleteMapping(value = "/girls/{id}")
     public void deleteGirl(@PathVariable(value = "id") Integer id) {
-        girlRepository.delete(id);
+        girlRepository.deleteById(id);
     }
 
     @PostMapping(value = "/girls/two")

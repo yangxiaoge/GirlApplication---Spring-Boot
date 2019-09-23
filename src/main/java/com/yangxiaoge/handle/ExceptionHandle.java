@@ -1,7 +1,6 @@
 package com.yangxiaoge.handle;
 
 import com.yangxiaoge.domain.Result;
-import com.yangxiaoge.enums.ResultEnum;
 import com.yangxiaoge.exception.GirlException;
 import com.yangxiaoge.utils.ResultUtil;
 import org.slf4j.Logger;
@@ -27,7 +26,8 @@ public class ExceptionHandle {
             return ResultUtil.error(girlException.getCode(), girlException.getMessage());
         } else {
             logger.error("[系统异常]{}", e);
-            return ResultUtil.error(-1, "未知错误");
+//            return ResultUtil.error(-1, "未知错误");
+            return ResultUtil.error(-1, e.getMessage());
         }
     }
 }

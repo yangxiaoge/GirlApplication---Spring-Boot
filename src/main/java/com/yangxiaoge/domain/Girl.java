@@ -15,8 +15,10 @@ public class Girl {
     @Id
     @GeneratedValue
     private Integer id;
+    @NotNull(message = "罩杯必传")
     private String cupSize;
-    @Min(value = 18,message = "少女不宜！")
+    @NotNull(message = "年龄必传")
+    @Min(value = 18, message = "少女不宜！")
     private Integer age;
     @NotNull(message = "金额必传")
     private Double money;

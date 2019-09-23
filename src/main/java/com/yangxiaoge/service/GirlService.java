@@ -33,7 +33,7 @@ public class GirlService {
     }
 
     public void getAge(Integer id) throws Exception {
-        Girl girl = girlRepository.findOne(id);
+        Girl girl = girlRepository.findById(id).orElse(null);
         Integer age = girl.getAge();
         if (age < 10) {
             throw new GirlException(ResultEnum.PRIMARY_SCHOOL);
@@ -44,6 +44,6 @@ public class GirlService {
 
     //查询一个女生信息
     public Girl findOne(Integer id){
-        return girlRepository.findOne(id);
+        return girlRepository.findById(id).orElse(null);
     }
 }
