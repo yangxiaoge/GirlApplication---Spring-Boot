@@ -1,5 +1,9 @@
 package com.yangxiaoge.domain;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * http请求返回的最外层对象
  * Created by yangxiaoge
@@ -15,6 +19,11 @@ public class Result<T> {
      * 提示信息
      */
     private String msg;
+
+    /**
+     * 后台时间
+     */
+    private String time;
 
     /**
      * 返回的具体内容
@@ -43,5 +52,13 @@ public class Result<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setCurrentTime() {
+        this.time = new SimpleDateFormat("yyyy-MM-dd  hh:mm:ss").format(new Date());
     }
 }

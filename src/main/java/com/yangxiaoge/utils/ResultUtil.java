@@ -13,6 +13,7 @@ public class ResultUtil {
         Result result = new Result();
         result.setCode(0);
         result.setMsg("成功");
+        result.setCurrentTime();
         result.setData(data);
         return result;
     }
@@ -25,6 +26,7 @@ public class ResultUtil {
         Result result = new Result();
         result.setCode(code);
         result.setMsg(msg);
+        result.setCurrentTime();
         return result;
     }
 }

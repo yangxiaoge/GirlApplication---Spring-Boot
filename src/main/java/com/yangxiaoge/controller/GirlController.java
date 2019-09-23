@@ -8,6 +8,7 @@ import com.yangxiaoge.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -83,27 +84,23 @@ public class GirlController {
      * 更新一个女生
      *
      * @param id
-     * @param cupSize
-     * @param age
-     * @param money
+     * @param newGirl
      * @return
      */
-    @PutMapping(value = "/girls/{id}")
+    @PutMapping(value = "/girls/{id}", consumes = {MediaType.APPLICATION_JSON_UTF8_VALUE})
     public Result<Girl> updateGirl(@PathVariable(value = "id") Integer id,
-                                   @RequestParam("cupSize") String cupSize,
-                                   @RequestParam("age") Integer age,
-                                   @RequestParam("money") Double money) {
+                                   @RequestBody Girl newGirl) {
         Optional<Girl> optional = girlRepository.findById(id);
         if (optional.isPresent()) {
             Girl girl = optional.get();
             girl.setId(id);
-            girl.setCupSize(cupSize);
-            girl.setAge(age);
-            girl.setMoney(money);
+            girl.setCupSize(newGirl.getCupSize());
+            girl.setAge(newGirl.getAge());
+            girl.setMoney(newGirl.getMoney());
             return ResultUtil.success(girlRepository.save(girl));
         }
 
-        return ResultUtil.error(1,"妹子不存在");
+        return ResultUtil.error(1, "妹子不存在");
     }
 
     /**
