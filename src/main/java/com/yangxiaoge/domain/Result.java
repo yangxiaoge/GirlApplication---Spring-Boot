@@ -61,4 +61,14 @@ public class Result<T> {
     public void setCurrentTime() {
         this.time = new SimpleDateFormat("yyyy-MM-dd  hh:mm:ss").format(new Date());
     }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", time='" + time + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }

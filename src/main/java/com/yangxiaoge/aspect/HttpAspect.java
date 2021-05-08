@@ -28,7 +28,8 @@ public class HttpAspect {
 
     @Before("log()")
     public void doBefore(JoinPoint joinPoint) {
-        logger.info("111111111111");
+        logger.info("-----------------------before-----------------------");
+        logger.info(joinPoint.getSignature().getName() + "方法开始执行...");
 
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
@@ -46,12 +47,18 @@ public class HttpAspect {
 
     @After("log()")
     public void doAfter() {
-        logger.info("222222222222");
+        logger.info("-----------------------after-----------------------");
 
     }
 
     @AfterReturning(returning = "object", pointcut = "log()")
     public void doAfterReturning(Object object) {
-//        logger.info("response={}", object.toString());
+        logger.info("response={}", object != null ? object.toString() : "");
+//        logger.info("response={}", object);
+    }
+
+    @AfterThrowing(value = "log()", throwing = "e")
+    public void afterThrowing(Exception e) {
+        logger.info("异常：" + e.getMessage());
     }
 }
