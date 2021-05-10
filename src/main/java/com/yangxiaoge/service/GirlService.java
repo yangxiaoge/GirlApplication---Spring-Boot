@@ -24,11 +24,13 @@ public class GirlService {
         Girl girlA = new Girl();
         girlA.setAge(18);
         girlA.setCupSize("A");
+        girlA.setMoney(666.0);
         girlRepository.save(girlA);
 
         Girl girlB = new Girl();
         girlB.setAge(19);
-        girlB.setCupSize("BBBB");
+        girlB.setCupSize("BBB");
+        //girlB.setMoney(888.0);
         girlRepository.save(girlB);
     }
 

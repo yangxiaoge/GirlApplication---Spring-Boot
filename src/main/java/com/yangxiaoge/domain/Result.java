@@ -1,6 +1,8 @@
 package com.yangxiaoge.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,6 +11,8 @@ import java.util.Date;
  * Created by yangxiaoge
  * 2019/3/25 19:36
  */
+//过滤空字段
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class Result<T> {
     /**
      * 错误码
